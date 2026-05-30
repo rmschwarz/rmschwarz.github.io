@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Independent expert verification of settlement platform migrations. Specialist in ISO 15022 / SWIFT MT across securities, triparty and CCP.">
+<title>Ralf Schwarz — Analysis and Verification in Settlement Change Projects</title>
+<link rel="icon" href="rs_logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+
+:root {
+  --bg: #002B5C;
+  --bg-light: #f7f8fa;
+  --fg: #c9d1d9;
+  --fg-bright: #f0f3f6;
+  --fg-muted: #9eb0c2;
+  --fg-dark: #1f2328;
+  --fg-dark-muted: #57606a;
+  --accent: #4DA8DB;
+  --accent-link: #005187;
+  --border-light: #d0d7de;
+  --border-dark: #1a4373;
+  --code-bg-light: #eef1f4;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--fg-dark);
+  background: var(--bg-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hero {
+  position: relative;
+  background:
+    url("hero-bg.svg") center / cover no-repeat,
+    radial-gradient(120% 140% at 80% 12%, rgba(77, 168, 219, 0.16), rgba(77, 168, 219, 0) 55%),
+    linear-gradient(135deg, #003C73 0%, var(--bg) 70%);
+  color: var(--fg);
+  padding: 5rem 1.5rem 4.5rem;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+/* Brand mark in the top-left corner — only shown on viewports wide enough
+   that it sits in the margin and never overlaps the centred hero text. */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  width: 100px;
+  height: 84px;
+  background: url("rs_logo_glow.svg") left top / auto 84px no-repeat;
+  pointer-events: none;
+}
+@media (max-width: 1099px) {
+  .hero::before { display: none; }
+}
+
+.hero-inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  color: var(--fg-bright);
+}
+
+.hero .role {
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin: 0 0 1.5rem;
+  font-weight: 500;
+}
+
+.hero .lead {
+  font-size: 1.1rem;
+  color: var(--fg);
+  max-width: 660px;
+  margin: 0 0 1.1rem;
+}
+.hero .lead:last-child { margin-bottom: 0; }
+
+.hero-name {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--fg-bright);
+  margin: 1.75rem 0 0;
+}
+
+main {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 5rem;
+}
+
+section { margin-bottom: 3.5rem; }
+
+.chapter { margin-bottom: 3.5rem; }
+.chapter:last-of-type { margin-bottom: 0; }
+
+.chapter-head {
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+}
+.chapter-head::-webkit-details-marker { display: none; }
+.chapter-head h2 { margin-bottom: 0; }
+.chapter[open] > .chapter-head h2 { margin-bottom: 1.25rem; }
+
+.chapter-head::after {
+  content: "";
+  position: absolute;
+  right: 0.25rem;
+  top: 0.3rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+  transition: transform 0.2s;
+}
+.chapter[open] > .chapter-head::after { transform: rotate(45deg); }
+.chapter-head:hover h2 { color: var(--fg-dark); }
+
+h2 {
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-dark-muted);
+  margin: 0 0 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+p {
+  margin: 0 0 1.1rem;
+  color: var(--fg-dark);
+}
+
+a {
+  color: var(--accent-link);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 81, 135, 0.3);
+  transition: border-color 0.15s;
+}
+a:hover { border-bottom-color: var(--accent-link); }
+
+ul {
+  padding-left: 0;
+  list-style: none;
+  margin: 0 0 1.1rem;
+}
+
+ul li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.55rem;
+}
+
+ul li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 500;
+}
+
+code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.88em;
+  background: var(--code-bg-light);
+  padding: 0.12em 0.4em;
+  border-radius: 4px;
+  color: #24292f;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+strong {
+  color: var(--fg-dark);
+  font-weight: 600;
+}
+
+.problem-block {
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 1.5rem 1.75rem;
+  margin: 1.5rem 0;
+}
+
+.problem-block p:last-child { margin-bottom: 0; }
+
+.pullquote {
+  font-size: 1.05rem;
+  color: var(--fg-dark);
+  border-left: 3px solid var(--accent);
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  margin: 1.5rem 0;
+  font-weight: 500;
+}
+
+.pullquote strong { font-weight: 600; }
+
+.tool-card {
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 1.75rem;
+  margin: 1.5rem 0;
+}
+
+.tool-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--fg-dark);
+}
+
+.tool-card .tool-meta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+  color: var(--fg-dark-muted);
+  margin: 0 0 1rem;
+}
+
+.tool-card .tool-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  margin: 1rem 0;
+}
+
+.tool-card p:last-child { margin-bottom: 0; }
+
+.contact-list { margin: 1.25rem 0; }
+.contact-list li {
+  padding-left: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.contact-list li::before { content: none; }
+.contact-list svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.projects { margin: 1.5rem 0 0; }
+
+.project-item {
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--border-light);
+}
+.project-item:first-child { border-top: none; padding-top: 0; }
+.project-item:last-child { padding-bottom: 0; }
+
+.project-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.15rem;
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  padding-left: 1.4rem;
+}
+.project-head::-webkit-details-marker { display: none; }
+
+.project-head::before {
+  content: "";
+  position: absolute;
+  left: 0.2rem;
+  top: 0.4rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+  transition: transform 0.2s;
+}
+details[open] > .project-head::before { transform: rotate(45deg); }
+
+.project-head:hover h3 { color: var(--accent-link); }
+
+.project-item > p { padding-left: 1.4rem; }
+
+.project-head h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--fg-dark);
+}
+
+.project-period {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--fg-dark-muted);
+  white-space: nowrap;
+}
+
+.project-context {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--accent-link);
+  margin: 0 0 0.6rem;
+}
+
+.project-item p:last-child { margin-bottom: 0; }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 1.75rem;
+  align-items: start;
+  margin: 1.5rem 0;
+}
+
+.about-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--border-light);
+}
+
+.about-text p:first-child { margin-top: 0; }
+.about-text p:last-child { margin-bottom: 0; }
+
+footer {
+  border-top: 1px solid var(--border-light);
+  background: #fff;
+  padding: 2rem 1.5rem;
+  font-size: 0.85rem;
+  color: var(--fg-dark-muted);
+}
+
+.footer-inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+footer p {
+  margin: 0 0 0.6rem;
+  color: var(--fg-dark-muted);
+}
+
+footer a {
+  color: var(--fg-dark-muted);
+  border-bottom-color: rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 640px) {
+  .hero { padding: 3rem 1.25rem 3rem; }
+  .hero h1 { font-size: 1.85rem; }
+  .hero .role { font-size: 1.05rem; }
+  .hero .lead { font-size: 1rem; }
+  main { padding: 2.5rem 1.25rem 3rem; }
+  body { font-size: 15px; }
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .about-photo {
+    width: 120px;
+    height: 120px;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">IT Consultant · Business Analyst · Securities Processes · Securities Finance · ISO 15022</p>
+    <h1>The archaeology of securities settlement</h1>
+    <p class="lead">Securities settlement is, at its core, a logistics network for securities and cash — moving holdings between safekeeping accounts at central securities depositories (CSDs). Its working language is SWIFT MT under ISO&nbsp;15022 — instructions, confirmations and statements that drive every transfer, each triggering bookings and standing as the record behind them. Designed in the 1970s, terse and cryptic, it is now spoken almost only by legacy and COTS systems: reading it is closer to deciphering hieroglyphs than software documentation.</p>
+    <p class="lead">Yet these systems are under constant pressure to change — T+1, Clearstream&rsquo;s UNO programme, modernisation, post-merger integration. I help banks change, replace and migrate them, starting by understanding what the messages actually say and reconstructing how a system truly behaves from the traces it leaves behind.</p>
+  </div>
+</header>
+
+<main>
+
+<details class="chapter">
+<summary class="chapter-head"><h2>About me</h2></summary>
+<div class="about-grid">
+<img class="about-photo" src="photo.jpeg" alt="Ralf Schwarz" width="140" height="140">
+<div class="about-text">
+<p>Banking IT consultant specialising in securities, trading and settlement systems for international banks and asset management firms.</p>
+<p>Supports the analysis, migration and integration of complex banking IT systems, combining deep securities process expertise with hands-on experience in trading, settlement and regulatory change projects. Experience includes legacy replacement of trading and settlement platforms, cloud migration, post-merger systems integration, exchange and market-data connectivity, and implementation of regulatory requirements in business processes and IT systems.</p>
+<p>Maintainer of MT Analyze, an open-source SWIFT MT analysis tool for migration, UAT and break investigation in securities settlement.</p>
+</div>
+</div>
+</details>
+
+<details class="chapter">
+<summary class="chapter-head"><h2>Selected Projects</h2></summary>
+<p>Focus in recent years: settlement and securities-finance initiatives with CCP, triparty and SWIFT relevance. A selection from a project history reaching back to 1997.</p>
+
+<div class="projects">
+
+<details class="project-item">
+<summary class="project-head">
+<h3>Replacement of Legacy Settlement System</h3>
+<span class="project-period">11 mos · ongoing</span>
+</summary>
+<p class="project-context">Major bank · Frankfurt</p>
+<p>Analysis of the settlement processes for securities finance via CCPs (LCH, Eurex), triparty agents and bilateral repos. Authoring user stories for the implementation partner, SWIFT mappings for Clearstream and Euroclear as well as securities and cash bookings; test cases and test-data extraction from SWIFT feeds. Accounting for Clearstream UNO and T+1 settlement.</p>
+</details>
+
+<details class="project-item">
+<summary class="project-head">
+<h3>Replacement of Settlement System (SDS GEOS)</h3>
+<span class="project-period">1 yr 3 mos</span>
+</summary>
+<p class="project-context">Securities bank · Frankfurt</p>
+<p>As an APEX specialist, development of seven C++ interfaces integrating FIS APEX Securities Finance with the new settlement system SDS GEOS and surrounding systems (Smartstream Corona, WSS, State Street/SimCorp, GEOS settlement status via Tibco). Implementation of a GEOS position reconciler to ensure data integrity.</p>
+</details>
+
+<details class="project-item">
+<summary class="project-head">
+<h3>Cloud Migration of Securities Operations</h3>
+<span class="project-period">11 mos</span>
+</summary>
+<p class="project-context">Global asset manager · Frankfurt</p>
+<p>Migration of securities-operations applications from on-premise to the Google Cloud Platform, including replacing the reconciliation system TLM with the SaaS solution DUCO and setting up a central identity and access management with ForgeRock.</p>
+</details>
+
+<details class="project-item">
+<summary class="project-head">
+<h3>Natural Language Processing — Financial Data Extraction</h3>
+<span class="project-period">3 yrs 3 mos</span>
+</summary>
+<p class="project-context">Business information agency · Germany</p>
+<p>Development of a Java text-analysis pipeline using computational-linguistics algorithms that processes the entire publication volume of the German Federal Gazette (Bundesanzeiger) and supports case workers in extracting financial figures. The system reaches 80% accuracy and highlights extracted information directly in the source documents for full traceability. Extended with generative AI using local LLMs, RAG and embeddings (Java, OpenNLP). Also built a web crawler capable of crawling 2 million company websites across the DACH region.</p>
+</details>
+
+<details class="project-item">
+<summary class="project-head">
+<h3>Post-Merger Integration — Securities Issuance Platform</h3>
+<span class="project-period">4 yrs 2 mos</span>
+</summary>
+<p class="project-context">French major bank · Frankfurt</p>
+<p>Project lead and business analysis for the post-merger integration of the securities issuance platform: analysis of the system landscape, migration of all interfaces for certificate issuance, lifecycle management and regulatory reporting, plus backlog and release management for three Scrum teams.</p>
+</details>
+
+<details class="project-item">
+<summary class="project-head">
+<h3>Regulatory Implementation — MiFID II</h3>
+<span class="project-period">4 yrs 1 mo</span>
+</summary>
+<p class="project-context">Major bank · Frankfurt</p>
+<p>Business analysis for the securities issuance platform with a focus on regulatory change: MiFID II/MiFIR compliance and successful go-live coordination on 1 January 2018, 871m reporting and intraday-process analysis, plus WM data integration for host applications. Backlog and release management for three Scrum teams.</p>
+</details>
+
+<details class="project-item">
+<summary class="project-head">
+<h3>Regulatory Transaction Reporting (Murex)</h3>
+<span class="project-period">1 yr 4 mos</span>
+</summary>
+<p class="project-context">Major bank · Frankfurt</p>
+<p>Analysis of trade strategies in Murex Equity and design of the reporting hub Callisto for automated regulatory reporting. Trade and lifecycle detection in Murex and data mapping for EMIR, Dodd-Frank, MMSR and MiFID II/MiFIR, with automated forwarding of all reportable transactions to the back-office system.</p>
+</details>
+
+<details class="project-item">
+<summary class="project-head">
+<h3>Securities Finance Infrastructure — Analysis &amp; Feasibility</h3>
+<span class="project-period">1 yr 10 mos</span>
+</summary>
+<p class="project-context">Major bank · Frankfurt</p>
+<p>Analysis of the global securities-finance infrastructure (Frankfurt, London, New York) and a feasibility study on transforming DBS Banking into an integrated front-to-back system. Specification of market-data connections (Reuters, Bloomberg) as well as position management and short coverage; a successful PoC followed by project approval.</p>
+</details>
+
+<details class="project-item">
+<summary class="project-head">
+<h3>Martini/APEX Developer — Securities Finance</h3>
+<span class="project-period">2 yrs</span>
+</summary>
+<p class="project-context">Securities bank · Frankfurt</p>
+<p>Development of numerous interfaces across trading, collateral management and settlement: Eurex Lending CCP connection including Pirum interface and novation, triparty collateral management with automatic linking and exposure monitoring for BONY, JPM, Clearstream and Euroclear, as well as a KAG+ SWIFT interface to Clearstream.</p>
+</details>
+
+<details class="project-item">
+<summary class="project-head">
+<h3>Air Traffic Control — Tower System (Swing Frontend)</h3>
+<span class="project-period">3 yrs 8 mos</span>
+</summary>
+<p class="project-context">Air traffic control · Langen</p>
+<p>Product development of a SaaS-based tower system for managing flight-plan workflows, sold to civil and military single-runway airports. Design and implementation of the Java Swing frontend for tower workstations, with real-time visualisation of aircraft positions and status on the ground and in the airspace. Handed over to a systems integrator, followed by a field study with the German armed forces (Java, Swing, JBoss, jBPM).</p>
+</details>
+
+<details class="project-item">
+<summary class="project-head">
+<h3>Distributed Systems &amp; Enterprise Application Integration</h3>
+<span class="project-period">9 yrs 3 mos</span>
+</summary>
+<p class="project-context">Telcos &amp; banks · Germany, UK &amp; USA</p>
+<p>Early-career focus on distributed systems and enterprise application integration (EAI) for large enterprises, predominantly telcos and banks. Design and implementation of integration layers, middleware and SOA infrastructures — high-throughput order and CRM integration, trading-system integration layers, and C++/Java EAI frameworks on platforms such as TIBCO, BEA WebLogic and IBM MQ, including assignments in the UK and the USA.</p>
+</details>
+
+<details class="project-item">
+<summary class="project-head">
+<h3>SWIFT Backbone (GTS)</h3>
+<span class="project-period">9 mos</span>
+</summary>
+<p class="project-context">Major bank · Frankfurt</p>
+<p>C++ development on the global GTS project, an internal SWIFT backbone on AIX and IBM MQ transmitting MT100 payment messages between the bank's worldwide mainframe and Tandem systems. Enhancement of the C++ components and automated regression testing for high-availability international payments.</p>
+</details>
+
+</div>
+</details>
+
+<details class="chapter">
+<summary class="chapter-head"><h2>Why it matters</h2></summary>
+<p>On its own, a SWIFT MT instruction and its confirmation are a tame problem &mdash; one message out, one message back, clearly structured. The well-known EAI integration patterns apply directly: SEME and RELA act as correlation identifiers that link multiple SWIFT MT messages into a trade lifecycle — instruction, allegement, confirmation, cancellation — aggregators collect partial position updates, and routers direct flows between counterparties. It turns wicked once triparty agents and CCPs act under power of attorney and the asynchronous confirmations that move a position arrive from outside the bank: message flows tangle, references chain across dozens of related messages, and the bank is no longer fully in control of its own communication.</p>
+<p>The systems are old and change constantly &mdash; yet their builders are retiring, and almost no one is still trained on the technology beneath them. Demographic change is draining the remaining expertise, while vendor lock-in in COTS platforms makes every change slower and costlier. The knowledge to change these systems safely is disappearing &mdash; just as the pressure to change them grows.</p>
+<p>Together, that is what makes changing these systems a genuinely wicked problem &mdash; no clean, off-the-shelf solution, and exactly the work I take on.</p>
+</details>
+
+<details class="chapter" open>
+<summary class="chapter-head"><h2>MT Analyze — Open Source SWIFT MT Tool</h2></summary>
+<div class="tool-card">
+<p>A personal side project — a desktop tool for analysing SWIFT MT messages per ISO 15022. Anyone working with MT files and only Windows built-in tools at hand quickly hits a wall: the MT&nbsp;536 statement of transactions has a nested, tree-shaped structure that simply doesn&rsquo;t flatten into a spreadsheet. I built the tool I was missing and released it open source so others in the same situation can use it too.</p>
+<p>It runs locally with no dependencies, no cloud, and no installation hassle — your messages never leave your machine.</p>
+<img class="tool-shot" src="https://www.mtanalyze.com/gui.gif" alt="MT Analyze demo: a sample MT 536 securities statement is loaded by drag &amp; drop, then two rows are compared side by side in the Diff view" loading="lazy">
+<p>Source code and documentation on <a href="https://github.com/mtanalyze/mtanalyze">GitHub</a> and <a href="https://central.sonatype.com/artifact/com.mtanalyze/mtanalyze">Maven Central</a>.</p>
+</div>
+</details>
+
+<details class="chapter" open>
+<summary class="chapter-head"><h2>Contact</h2></summary>
+<p>For enquiries and professional exchange:</p>
+<ul class="contact-list">
+<li>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+<a href="mailto:info@ralfschwarz.net">info@ralfschwarz.net</a>
+</li>
+<li>
+<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg>
+<a href="https://www.linkedin.com/in/ralfschwarz/">LinkedIn</a> — professional background and contact
+</li>
+<li>
+<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.87-1.54-3.87-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a10.96 10.96 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.8-.01 3.18 0 .31.21.68.8.56C20.71 21.38 24 17.07 24 12 24 5.65 18.85.5 12 .5Z"/></svg>
+<a href="https://github.com/mtanalyze/mtanalyze">MT Analyze</a> — maintainer of the open-source SWIFT MT analysis tool
+</li>
+</ul>
+</details>
+
+</main>
+
+<footer>
+<div class="footer-inner">
+<p>SWIFT is a registered trademark of S.W.I.F.T. SCRL. ISO 15022 is a standard of ISO. This offering is independent and not affiliated with these organisations.</p>
+<p>© 2026 Ralf Schwarz · <a href="impressum.html">Imprint</a></p>
+</div>
+</footer>
+
+</body>
+</html>
