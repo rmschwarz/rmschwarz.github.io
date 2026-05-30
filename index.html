@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Independent expert verification of settlement platform migrations. Specialist in ISO 15022 / SWIFT MT across securities, triparty and CCP.">
-<title>Ralf Schwarz — Analysis and Verification in Settlement Change Projects</title>
+<title>Ralf Schwarz — IT Consultant</title>
 <link rel="icon" href="rs_logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="rs_logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -50,20 +51,22 @@ body {
   border-bottom: 1px solid var(--border-dark);
 }
 
-/* Brand mark in the top-left corner — only shown on viewports wide enough
-   that it sits in the margin and never overlaps the centred hero text. */
-.hero::before {
-  content: "";
+/* Brand mark — absolute in the left margin on wide screens, inline above title on mobile */
+.hero-logo {
   position: absolute;
   top: 1.5rem;
   left: 1.5rem;
   width: 100px;
   height: 84px;
-  background: url("rs_logo_glow.svg") left top / auto 84px no-repeat;
-  pointer-events: none;
 }
 @media (max-width: 1099px) {
-  .hero::before { display: none; }
+  .hero-logo {
+    position: static;
+    display: block;
+    width: 64px;
+    height: auto;
+    margin: 0 auto 1.25rem;
+  }
 }
 
 .hero-inner {
@@ -385,9 +388,37 @@ footer a {
   border-bottom-color: rgba(0, 0, 0, 0.15);
 }
 
+/* Bilder nie breiter als ihr Container */
+img { max-width: 100%; height: auto; }
+
+/* Tap-Targets: chapter und project summary mindestens 44px hoch */
+.chapter-head,
+.project-head {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+.chapter-head h2,
+.project-head { flex: 1; }
+
+/* Links groß genug für den Finger */
+a { min-height: 44px; display: inline-flex; align-items: center; }
+/* Ausnahmen für rein fließende Links im Text */
+p a, li a, footer a { display: inline; min-height: unset; }
+
+/* Tablet (768px) */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2rem; }
+  .hero .lead { font-size: 1.05rem; }
+  main { padding: 3rem 1.5rem 3rem; }
+}
+
+/* Mobil (640px) */
 @media (max-width: 640px) {
   .hero { padding: 3rem 1.25rem 3rem; }
-  .hero h1 { font-size: 1.85rem; }
+  .hero h1 { font-size: 1.7rem; }
   .hero .role { font-size: 1.05rem; }
   .hero .lead { font-size: 1rem; }
   main { padding: 2.5rem 1.25rem 3rem; }
@@ -406,8 +437,9 @@ footer a {
 <body>
 
 <header class="hero">
+  <img src="rs_logo_glow.svg" alt="RS Logo" class="hero-logo" width="100" height="84">
   <div class="hero-inner">
-    <p class="eyebrow">IT Consultant · Business Analyst · Securities Processes · Securities Finance · ISO 15022</p>
+    <p class="eyebrow">IT Consultant · Business Analyst · Securities Processes · Securities Finance </p>
     <h1>The archaeology of securities settlement</h1>
     <p class="lead">Securities settlement is, at its core, a logistics network for securities and cash — moving holdings between safekeeping accounts at central securities depositories (CSDs). Its working language is SWIFT MT under ISO&nbsp;15022 — instructions, confirmations and statements that drive every transfer, each triggering bookings and standing as the record behind them. Designed in the 1970s, terse and cryptic, it is now spoken almost only by legacy and COTS systems: reading it is closer to deciphering hieroglyphs than software documentation.</p>
     <p class="lead">Yet these systems are under constant pressure to change — T+1, Clearstream&rsquo;s UNO programme, modernisation, post-merger integration. I help banks change, replace and migrate them, starting by understanding what the messages actually say and reconstructing how a system truly behaves from the traces it leaves behind.</p>
@@ -586,7 +618,7 @@ footer a {
 <footer>
 <div class="footer-inner">
 <p>SWIFT is a registered trademark of S.W.I.F.T. SCRL. ISO 15022 is a standard of ISO. This offering is independent and not affiliated with these organisations.</p>
-<p>© 2026 Ralf Schwarz · <a href="impressum.html">Imprint</a></p>
+<p>&copy; 2026 Ralf Schwarz &middot; <a href="impressum.html">Impressum</a> &middot; <a href="datenschutz.html">Datenschutz</a></p>
 </div>
 </footer>
 
