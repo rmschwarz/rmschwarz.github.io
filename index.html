@@ -52,7 +52,7 @@ body {
   border-bottom: 1px solid var(--border-dark);
 }
 
-/* Brand mark — absolute in the left margin on wide screens, inline above title on mobile */
+/* Brand mark — stays in the upper-left corner on every screen size */
 .hero-logo {
   position: absolute;
   top: 1.5rem;
@@ -62,11 +62,8 @@ body {
 }
 @media (max-width: 1099px) {
   .hero-logo {
-    position: static;
-    display: block;
     width: 64px;
     height: auto;
-    margin: 0 auto 1.25rem;
   }
 }
 
@@ -418,7 +415,12 @@ p a, li a, footer a { display: inline; min-height: unset; }
 
 /* Mobil (640px) */
 @media (max-width: 640px) {
-  .hero { padding: 3rem 1.25rem 3rem; }
+  .hero { padding: 6rem 1.25rem 3rem; }
+  .hero-logo {
+    top: 1.25rem;
+    left: 1.25rem;
+    width: 58px;
+  }
   .hero h1 { font-size: 1.7rem; }
   .hero .role { font-size: 1.05rem; }
   .hero .lead { font-size: 1rem; }
