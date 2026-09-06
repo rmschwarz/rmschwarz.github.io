@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Independent expert verification of settlement platform migrations. Specialist in ISO 15022 / SWIFT MT across securities, triparty and CCP.">
-<title>Ralf Schwarz — IT Consultant</title>
+<meta name="description" content="Ralf Schwarz — Banking IT Consultant für Wertpapier-, Handels- und Abwicklungssysteme. Analyse, Migration und Integration für internationale Banken und Asset Manager.">
+<title>Ralf Schwarz — Banking IT Consultant für Wertpapier- und Handelssysteme</title>
 <link rel="icon" href="rs_logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="rs_logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -264,6 +264,21 @@ strong {
 
 .tool-card p:last-child { margin-bottom: 0; }
 
+.tool-features { margin: 1.5rem 0; }
+.tool-features li { margin-bottom: 0.85rem; }
+.tool-figure { margin: 1.5rem 0; }
+.tool-figure figcaption { font-size: 0.85rem; color: var(--fg-dark-muted); }
+.tool-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem 1.25rem; }
+.tool-actions .tool-primary {
+  padding: 0.6rem 1rem;
+  background: var(--bg);
+  color: #fff;
+  border: 1px solid var(--bg);
+  border-radius: 6px;
+}
+.tool-actions .tool-primary:hover { background: var(--accent-link); }
+.tool-actions a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+
 .contact-list { margin: 1.25rem 0; }
 .contact-list li {
   padding-left: 0;
@@ -442,164 +457,173 @@ p a, li a, footer a { display: inline; min-height: unset; }
 <header class="hero">
   <img src="rs_logo_glow.svg" alt="RS Logo" class="hero-logo" width="100" height="84">
   <div class="hero-inner">
-    <p class="eyebrow">IT Consultant · Business Analyst · Securities Processes · Securities Finance </p>
-    <h1>The archaeology of securities settlement</h1>
-    <p class="lead">Every securities transfer generates a trail of SWIFT MT messages — instructions, confirmations, statements — that drive bookings and serve as the source of truth. These messages are the working language of settlement. Understanding them is the prerequisite for any migration, system replacement or regulatory change.</p>
-    <p class="lead">Settlement systems are under constant pressure to change: T+1, Clearstream&rsquo;s UNO programme, post-merger integration, platform modernisation. I help banks deliver these changes safely — by reading what the messages actually say and reconstructing how a system truly behaves before anything is touched.</p>
+    <p class="eyebrow">Ralf Schwarz · Banking IT Consultant</p>
+    <h1>Wertpapier-, Handels- und Abwicklungssysteme</h1>
+    <p class="lead">Ich unterstütze internationale Banken und Asset Manager bei der Analyse, Migration und Integration ihrer IT-Systeme — mit fundiertem Wissen über Wertpapierprozesse und praktischer Erfahrung in der technischen Umsetzung.</p>
+    <p class="lead">Von der Ablösung gewachsener Plattformen über Cloud-Migrationen bis zur Umsetzung regulatorischer Anforderungen.</p>
   </div>
 </header>
 
 <main>
 
-<details class="chapter">
-<summary class="chapter-head"><h2>About me</h2></summary>
+<details class="chapter" open>
+<summary class="chapter-head"><h2>Über mich</h2></summary>
 <div class="about-grid">
 <img class="about-photo" src="photo.jpeg" alt="Ralf Schwarz" width="140" height="140">
 <div class="about-text">
-<p>Banking IT consultant specialising in securities, trading and settlement systems for international banks and asset management firms.</p>
-<p>Specialises in the analysis, migration and integration of securities and settlement systems. Brings together process knowledge and technical delivery across legacy replacement, cloud migration, post-merger integration and regulatory change.</p>
-<p>Maintainer of MT Analyze, an open-source SWIFT MT analysis tool for migration, UAT and break investigation in securities settlement.</p>
+<p>Ich bin Ralf Schwarz, Banking IT Consultant mit Schwerpunkt auf Wertpapier-, Handels- und Abwicklungssystemen für internationale Banken und Asset Manager.</p>
+<p>Ich unterstütze die Analyse, Migration und Integration komplexer Bankensysteme. Dabei verbinde ich fundiertes Wissen über Wertpapierprozesse mit praktischer Erfahrung aus Handels-, Abwicklungs- und Regulierungsprojekten.</p>
+<p>Meine Erfahrung reicht von der Ablösung gewachsener Handels- und Abwicklungsplattformen über Cloud-Migrationen und Systemintegration nach Fusionen bis zur Anbindung von Börsen und Marktdaten. Dazu kommt die Umsetzung regulatorischer Anforderungen in Geschäftsprozessen und IT-Systemen.</p>
+<p>Außerdem pflege ich MT&nbsp;Analyze, ein Open-Source-Werkzeug zur Analyse von SWIFT-MT-Nachrichten für Migrationen, fachliche Abnahmetests (UAT) und die Klärung von Abweichungen in der Wertpapierabwicklung.</p>
 </div>
 </div>
 </details>
 
 <details class="chapter">
-<summary class="chapter-head"><h2>Selected Projects</h2></summary>
-<p>Focus in recent years: settlement and securities-finance initiatives with CCP, triparty and SWIFT relevance. A selection from a project history reaching back to 1997.</p>
+<summary class="chapter-head"><h2>Ausgewählte Projekte</h2></summary>
+<p>Schwerpunkt der letzten Jahre: Vorhaben in Abwicklung und Securities Finance mit CCP-, Triparty- und SWIFT-Bezug. Eine Auswahl aus einer Projekthistorie, die bis 1997 zurückreicht.</p>
 
 <div class="projects">
 
 <details class="project-item">
 <summary class="project-head">
-<h3>Replacement of Legacy Settlement System</h3>
-<span class="project-period">11 mos </span>
+<h3>Ablösung eines Legacy-Abwicklungssystems</h3>
+<span class="project-period">11 Mon.</span>
 </summary>
-<p class="project-context">Major bank · Frankfurt</p>
-<p>Analysis of the settlement processes for securities finance via CCPs (LCH, Eurex), triparty agents and bilateral repos. Authoring user stories for the implementation partner, SWIFT mappings for Clearstream and Euroclear as well as securities and cash bookings; test cases and test-data extraction from SWIFT feeds. Accounting for Clearstream UNO and T+1 settlement.</p>
+<p class="project-context">Großbank · Frankfurt</p>
+<p>Analyse der Abwicklungsprozesse für Securities Finance über CCPs (LCH, Eurex), Triparty-Agenten und bilaterale Repos. Erstellung von User Stories für den Implementierungspartner, SWIFT-Mappings für Clearstream und Euroclear sowie Wertpapier- und Geldbuchungen; Testfälle und Testdatengewinnung aus SWIFT-Feeds. Berücksichtigung von Clearstream UNO und T+1-Settlement.</p>
 </details>
 
 <details class="project-item">
 <summary class="project-head">
-<h3>Replacement of Settlement System (SDS GEOS)</h3>
-<span class="project-period">1 yr 3 mos</span>
+<h3>Ablösung des Abwicklungssystems (SDS GEOS)</h3>
+<span class="project-period">1 Jahr 3 Mon.</span>
 </summary>
-<p class="project-context">Securities bank · Frankfurt</p>
-<p>Integration of FIS APEX Securities Finance with the new settlement system SDS GEOS and all surrounding systems. Delivery of automated position reconciliation to ensure data integrity throughout the cutover.</p>
+<p class="project-context">Wertpapierbank · Frankfurt</p>
+<p>Integration von FIS APEX Securities Finance mit dem neuen Abwicklungssystem SDS GEOS und allen umliegenden Systemen. Aufbau eines automatisierten Bestandsabgleichs zur Sicherung der Datenintegrität während des Cutovers.</p>
 </details>
 
 <details class="project-item">
 <summary class="project-head">
-<h3>Cloud Migration of Securities Operations</h3>
-<span class="project-period">11 mos</span>
+<h3>Cloud-Migration der Wertpapier-Operations</h3>
+<span class="project-period">11 Mon.</span>
 </summary>
-<p class="project-context">Global asset manager · Frankfurt</p>
-<p>Migration of securities-operations applications from on-premise to the Google Cloud Platform, including replacing the reconciliation system TLM with the SaaS solution DUCO and setting up a central identity and access management with ForgeRock.</p>
+<p class="project-context">Globaler Asset Manager · Frankfurt</p>
+<p>Migration der Anwendungen der Wertpapier-Operations von On-Premise auf die Google Cloud Platform, einschließlich Ablösung des Abgleichssystems TLM durch die SaaS-Lösung DUCO und Aufbau eines zentralen Identity- und Access-Managements mit ForgeRock.</p>
 </details>
 
 <details class="project-item">
 <summary class="project-head">
-<h3>Natural Language Processing — Financial Data Extraction</h3>
-<span class="project-period">3 yrs 3 mos</span>
+<h3>Natural Language Processing — Extraktion von Finanzdaten</h3>
+<span class="project-period">3 Jahre 3 Mon.</span>
 </summary>
-<p class="project-context">Business information agency · Germany</p>
-<p>Automated extraction of financial figures from the entire German Federal Gazette (Bundesanzeiger), reaching 80% accuracy with full traceability. Extended with AI-based extraction and a web crawler covering 2 million company websites across DACH.</p>
+<p class="project-context">Wirtschaftsauskunftei · Deutschland</p>
+<p>Automatisierte Extraktion von Finanzkennzahlen aus dem gesamten Bundesanzeiger, mit 80&nbsp;% Genauigkeit bei voller Nachvollziehbarkeit. Erweiterung um KI-basierte Extraktion und einen Web-Crawler über 2&nbsp;Millionen Unternehmenswebsites im DACH-Raum.</p>
 </details>
 
 <details class="project-item">
 <summary class="project-head">
-<h3>Post-Merger Integration — Securities Issuance Platform</h3>
-<span class="project-period">4 yrs 2 mos</span>
+<h3>Post-Merger-Integration — Emissionsplattform</h3>
+<span class="project-period">4 Jahre 2 Mon.</span>
 </summary>
-<p class="project-context">French major bank · Frankfurt</p>
-<p>Project lead and business analysis for the post-merger integration of the securities issuance platform: analysis of the system landscape, migration of all interfaces for certificate issuance, lifecycle management and regulatory reporting, plus backlog and release management for three Scrum teams.</p>
+<p class="project-context">Französische Großbank · Frankfurt</p>
+<p>Projektleitung und Business-Analyse für die Post-Merger-Integration der Wertpapier-Emissionsplattform: Analyse der Systemlandschaft, Migration aller Schnittstellen für Zertifikate-Emission, Lifecycle-Management und regulatorisches Reporting sowie Backlog- und Release-Management für drei Scrum-Teams.</p>
 </details>
 
 <details class="project-item">
 <summary class="project-head">
-<h3>Regulatory Implementation — MiFID II</h3>
-<span class="project-period">4 yrs 1 mo</span>
+<h3>Regulatorische Umsetzung — MiFID II</h3>
+<span class="project-period">4 Jahre 1 Mon.</span>
 </summary>
-<p class="project-context">Major bank · Frankfurt</p>
-<p>Business analysis for the securities issuance platform with a focus on regulatory change: MiFID II/MiFIR compliance and successful go-live coordination on 1 January 2018, 871m reporting and intraday-process analysis, plus WM data integration for host applications. Backlog and release management for three Scrum teams.</p>
+<p class="project-context">Großbank · Frankfurt</p>
+<p>Business-Analyse für die Wertpapier-Emissionsplattform mit Fokus auf regulatorische Änderung: MiFID-II/MiFIR-Compliance und erfolgreiche Go-Live-Koordination zum 1.&nbsp;Januar 2018, 871m-Reporting und Analyse der Intraday-Prozesse sowie WM-Datenintegration für Host-Anwendungen. Backlog- und Release-Management für drei Scrum-Teams.</p>
 </details>
 
 <details class="project-item">
 <summary class="project-head">
-<h3>Regulatory Transaction Reporting (Murex)</h3>
-<span class="project-period">1 yr 4 mos</span>
+<h3>Regulatorisches Transaction Reporting (Murex)</h3>
+<span class="project-period">1 Jahr 4 Mon.</span>
 </summary>
-<p class="project-context">Major bank · Frankfurt</p>
-<p>Design of an automated reporting hub covering EMIR, Dodd-Frank, MMSR and MiFID II/MiFIR. Automated detection and forwarding of all reportable transactions from the front-office trading system to the back office.</p>
+<p class="project-context">Großbank · Frankfurt</p>
+<p>Konzeption eines automatisierten Reporting-Hubs für EMIR, Dodd-Frank, MMSR und MiFID II/MiFIR. Automatisierte Erkennung und Weiterleitung aller meldepflichtigen Geschäfte aus dem Front-Office-Handelssystem an das Back Office.</p>
 </details>
 
 <details class="project-item">
 <summary class="project-head">
-<h3>Securities Finance Infrastructure — Analysis &amp; Feasibility</h3>
-<span class="project-period">1 yr 10 mos</span>
+<h3>Securities-Finance-Infrastruktur — Analyse &amp; Machbarkeit</h3>
+<span class="project-period">1 Jahr 10 Mon.</span>
 </summary>
-<p class="project-context">Major bank · Frankfurt</p>
-<p>Analysis of the global securities-finance infrastructure across Frankfurt, London and New York. Feasibility study for a front-to-back consolidation, leading to a successful proof of concept and project approval.</p>
+<p class="project-context">Großbank · Frankfurt</p>
+<p>Analyse der globalen Securities-Finance-Infrastruktur über Frankfurt, London und New York. Machbarkeitsstudie für eine Front-to-Back-Konsolidierung, die zu einem erfolgreichen Proof of Concept und der Projektfreigabe führte.</p>
 </details>
 
 <details class="project-item">
 <summary class="project-head">
-<h3>Martini/APEX Developer — Securities Finance</h3>
-<span class="project-period">2 yrs</span>
+<h3>Martini/APEX-Entwickler — Securities Finance</h3>
+<span class="project-period">2 Jahre</span>
 </summary>
-<p class="project-context">Securities bank · Frankfurt</p>
-<p>Delivery of interfaces across trading, collateral management and settlement: CCP connectivity for Eurex Lending, triparty collateral management for BONY, JPM, Clearstream and Euroclear, and a SWIFT interface to Clearstream.</p>
+<p class="project-context">Wertpapierbank · Frankfurt</p>
+<p>Umsetzung von Schnittstellen über Handel, Collateral-Management und Abwicklung: CCP-Anbindung für Eurex Lending, Triparty-Collateral-Management für BONY, JPM, Clearstream und Euroclear sowie eine SWIFT-Schnittstelle zu Clearstream.</p>
 </details>
 
 <details class="project-item">
 <summary class="project-head">
-<h3>Air Traffic Control — Tower System (Swing Frontend)</h3>
-<span class="project-period">3 yrs 8 mos</span>
+<h3>Flugsicherung — Tower-System (Swing-Frontend)</h3>
+<span class="project-period">3 Jahre 8 Mon.</span>
 </summary>
-<p class="project-context">Air traffic control · Langen</p>
-<p>Product development of a tower system for managing flight-plan workflows at civil and military airports. Includes a real-time workstation view of aircraft positions and status. Handed over to a systems integrator; validated in a field study with the German armed forces.</p>
+<p class="project-context">Flugsicherung · Langen</p>
+<p>Produktentwicklung eines Tower-Systems zur Steuerung von Flugplan-Workflows an zivilen und militärischen Flughäfen. Enthält eine Echtzeit-Arbeitsplatzansicht von Flugzeugpositionen und -status. Übergabe an einen Systemintegrator; validiert in einer Feldstudie mit der Bundeswehr.</p>
 </details>
 
 <details class="project-item">
 <summary class="project-head">
-<h3>Distributed Systems &amp; Enterprise Application Integration</h3>
-<span class="project-period">9 yrs 3 mos</span>
+<h3>Verteilte Systeme &amp; Enterprise Application Integration</h3>
+<span class="project-period">9 Jahre 3 Mon.</span>
 </summary>
-<p class="project-context">Telcos &amp; banks · Germany, UK &amp; USA</p>
-<p>Early-career work connecting large enterprise systems for telcos and banks — order management, CRM, trading platforms. Integration projects in Germany, the UK and the USA.</p>
+<p class="project-context">Telkos &amp; Banken · Deutschland, UK &amp; USA</p>
+<p>Frühe Berufsjahre mit der Anbindung großer Unternehmenssysteme für Telkos und Banken — Order-Management, CRM, Handelsplattformen. Integrationsprojekte in Deutschland, Großbritannien und den USA.</p>
 </details>
 
 <details class="project-item">
 <summary class="project-head">
-<h3>SWIFT Backbone (GTS)</h3>
-<span class="project-period">9 mos</span>
+<h3>SWIFT-Backbone (GTS)</h3>
+<span class="project-period">9 Mon.</span>
 </summary>
-<p class="project-context">Major bank · Frankfurt</p>
-<p>Development work on the bank&rsquo;s internal SWIFT backbone routing international payment messages between worldwide mainframe and processing systems. Includes automated regression testing for high-availability operations.</p>
+<p class="project-context">Großbank · Frankfurt</p>
+<p>Entwicklungsarbeit am internen SWIFT-Backbone der Bank, das internationale Zahlungsnachrichten zwischen weltweiten Mainframe- und Verarbeitungssystemen routet. Inklusive automatisierter Regressionstests für den hochverfügbaren Betrieb.</p>
 </details>
 
 </div>
 </details>
 
-<details class="chapter">
-<summary class="chapter-head"><h2>Why it matters</h2></summary>
-<p>A single settlement instruction paired with its confirmation is straightforward. It becomes complex when triparty agents and CCPs act on the bank&rsquo;s behalf: confirmations arrive asynchronously from outside, a single trade generates a chain of related messages, and the bank is no longer in full control of its own flows. Tracking what happened — and why — requires reading that message chain end to end.</p>
-<p>The systems that process these flows are old. The people who built them are retiring, and the knowledge of how they truly work is leaving with them. At the same time, regulatory change, T+1 and platform consolidation mean these systems must be changed — faster than ever, with less internal expertise than before.</p>
-<p>That combination — ageing systems, shrinking expertise, growing pressure — is what makes these projects genuinely difficult. It is also exactly where I work.</p>
-</details>
-
 <details class="chapter" open>
-<summary class="chapter-head"><h2>MT Analyze — Open Source SWIFT MT Tool</h2></summary>
+<summary class="chapter-head"><h2>MT Analyze — SWIFT-Nachrichten verstehen und vergleichen</h2></summary>
 <div class="tool-card">
-<p>A personal side project — a desktop tool for analysing SWIFT MT messages per ISO 15022. Anyone working with MT files and only Windows built-in tools at hand quickly hits a wall: the MT&nbsp;536 statement of transactions has a nested, tree-shaped structure that simply doesn&rsquo;t flatten into a spreadsheet. I built the tool I was missing and released it open source so others in the same situation can use it too.</p>
-<p>It runs locally with no dependencies, no cloud, and no installation hassle — your messages never leave your machine.</p>
-<img class="tool-shot" src="https://www.mtanalyze.com/gui.gif" alt="MT Analyze demo: a sample MT 536 securities statement is loaded by drag &amp; drop, then two rows are compared side by side in the Diff view" loading="lazy">
-<p><a href="https://www.mtanalyze.com">www.mtanalyze.com</a> &mdash; source code and documentation on <a href="https://github.com/mtanalyze/mtanalyze">GitHub</a> and <a href="https://central.sonatype.com/artifact/com.mtanalyze/mtanalyze">Maven Central</a>.</p>
+<p class="tool-meta">Open Source · Desktop-Anwendung · Java 17+</p>
+<h3>Von der Nachricht zum nachvollziehbaren Geschäftsvorfall</h3>
+<p>Bei Migrationen, in der UAT und bei Abweichungen zählt, was die Systeme tatsächlich austauschen. Dafür entwickle und pflege ich MT Analyze: ein Werkzeug, das SWIFT-MT-Nachrichten lesbar aufbereitet und ihre Analyse unabhängig vom Ursprungssystem ermöglicht.</p>
+<ul class="tool-features">
+<li><strong>Nachrichten erschließen.</strong> Ganze Ordner und Logdateien mit gemischten MT-Typen als sortier- und filterbare Tabelle auswerten — mit Feldbedeutungen nach ISO 15022, auch bei verschachtelten Inhalten.</li>
+<li><strong>Zusammenhänge verfolgen.</strong> Zusammengehörige Nachrichten über ihre Referenzen verbinden und den Geschäftsvorfall nachvollziehen.</li>
+<li><strong>Abweichungen erkennen.</strong> Zwei Zeilen nebeneinander vergleichen, mehrere Dokumente in Tabs öffnen und Inhalte für die weitere Auswertung nach Excel kopieren.</li>
+</ul>
+<p>Der Schwerpunkt liegt auf Wertpapierabwicklung, Corporate Actions und Cash Reporting: MT 5xx einschließlich Triparty sowie MT 9xx. Weitere Nachrichtentypen werden ebenfalls eingelesen.</p>
+<figure class="tool-figure">
+<img class="tool-shot" src="https://www.mtanalyze.com/gui.png" alt="MT Analyze mit tabellarisch aufbereiteten MT-536-Daten links und der zugehörigen SWIFT-Nachricht rechts" loading="lazy">
+<figcaption>Strukturierte Daten und ursprüngliche SWIFT-Nachricht in einer Ansicht.</figcaption>
+</figure>
+<p><strong>Die Verarbeitung erfolgt lokal auf dem eigenen Rechner.</strong> MT Analyze läuft als JAR mit Java 17 oder neuer und benötigt weder Server noch Cloud.</p>
+<div class="tool-actions">
+<a class="tool-primary" href="https://www.mtanalyze.com">MT Analyze entdecken <span aria-hidden="true">&nbsp;↗</span></a>
+<a href="https://github.com/mtanalyze/mtanalyze">Quellcode &amp; Dokumentation</a>
+<a href="https://central.sonatype.com/artifact/com.mtanalyze/mtanalyze">Maven Central</a>
+</div>
 </div>
 </details>
 
 <details class="chapter" open>
-<summary class="chapter-head"><h2>Contact</h2></summary>
-<p>For enquiries and professional exchange:</p>
+<summary class="chapter-head"><h2>Kontakt</h2></summary>
+<p>Für Anfragen und fachlichen Austausch:</p>
 <ul class="contact-list">
 <li>
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
@@ -613,10 +637,6 @@ p a, li a, footer a { display: inline; min-height: unset; }
 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.87-1.54-3.87-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a10.96 10.96 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.8-.01 3.18 0 .31.21.68.8.56C20.71 21.38 24 17.07 24 12 24 5.65 18.85.5 12 .5Z"/></svg>
 <a href="https://github.com/mtanalyze/mtanalyze">MT Analyze</a> 
 </li>
-<li>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-<a href="https://outlook.office.com/bookwithme/user/fe2103555724467bb8f1732cab780a8d@centerscout.net/meetingtype/-0tv2Tduv0uOp73d7A0fvA2?anonymous&ismsaljsauthenabled&ep=mlink" target="_blank" rel="noopener">Book a meeting</a> 
-</li>
 </ul>
 </details>
 
@@ -624,7 +644,7 @@ p a, li a, footer a { display: inline; min-height: unset; }
 
 <footer>
 <div class="footer-inner">
-<p>SWIFT is a registered trademark of S.W.I.F.T. SCRL. ISO 15022 is a standard of ISO. This offering is independent and not affiliated with these organisations.</p>
+<p>ISO 15022 ist ein Standard der ISO. Dieses Angebot ist unabhängig und steht in keiner Verbindung zur ISO.</p>
 <p>&copy; 2026 Ralf Schwarz &middot; <a href="impressum.html">Impressum</a> &middot; <a href="datenschutz.html">Datenschutz</a></p>
 </div>
 </footer>
