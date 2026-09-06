@@ -3,18 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Ralf Schwarz — Banking IT Consultant für Wertpapier-, Handels- und Abwicklungssysteme. Analyse, Migration und Integration für internationale Banken und Asset Manager.">
-<title>Ralf Schwarz — Banking IT Consultant für Wertpapier- und Handelssysteme</title>
+<meta name="description" content="Ralf Schwarz — Banking IT Consultant. Unterstützt Banken und Asset Manager bei Migrationen und regulatorischen Changes in gewachsenen Systemlandschaften: Business-Analyse, Requirements und fachliche Bewertung der Umsetzung.">
+<title>Ralf Schwarz — Banking IT Consultant für Wertpapierprozesse</title>
 <link rel="icon" href="rs_logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="rs_logo.svg">
 <meta name="theme-color" content="#002B5C">
 <meta property="og:title" content="Ralf Schwarz — Banking IT Consultant">
-<meta property="og:description" content="Analyse, Migration und Integration von Wertpapier-, Handels- und Abwicklungssystemen für internationale Banken und Asset Manager.">
+<meta property="og:description" content="Komplexe Wertpapierprozesse verstehen, Changes sicher umsetzen. Business-Analyse, Migration und Integration für Banken und Asset Manager.">
 <meta property="og:type" content="profile">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/jetbrainsmono-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+/* Selbst gehostete Schriften (SIL OFL 1.1) — kein Drittanbieter-Request, siehe fonts/README.txt */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fonts/inter-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fonts/inter-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url("fonts/jetbrainsmono-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url("fonts/jetbrainsmono-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 body { margin: 0; }
@@ -130,13 +163,14 @@ body {
 }
 
 .hero h1 {
-  font-size: clamp(1.85rem, 5.2vw, 2.85rem);
+  font-size: clamp(1.7rem, 4.4vw, 2.4rem);
   font-weight: 700;
   letter-spacing: -0.022em;
-  line-height: 1.12;
+  line-height: 1.14;
   margin: 0 0 1.1rem;
   color: #f2f6fa;
-  max-width: 18ch;
+  max-width: 34ch;
+  text-wrap: balance;
 }
 
 .hero .role {
@@ -490,12 +524,84 @@ footer p { margin: 0; color: var(--ink-faint); }
 footer a { color: var(--ink-faint); border-bottom-color: rgba(0, 0, 0, 0.15); }
 footer a:hover { color: var(--ink-soft); }
 
-/* ---------- Bilder / Tap-Targets ---------- */
+/* ---------- Bilder ---------- */
 
 img { max-width: 100%; height: auto; }
 
-a { min-height: 44px; display: inline-flex; align-items: center; }
-p a, li a, footer a { display: inline; min-height: unset; }
+/* ---------- Skip-Link ---------- */
+
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10;
+  padding: 0.7rem 1.1rem;
+  background: var(--surface);
+  color: var(--accent-ink);
+  font-weight: 600;
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  transform: translateY(calc(-100% - 1rem));
+  transition: transform 0.15s ease;
+}
+.skip-link:focus { transform: translateY(0); }
+
+/* ---------- Kapitel-Navigation ---------- */
+
+.toc {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+.toc ul {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.6rem;
+}
+.toc li { margin: 0; padding-left: 0; }
+.toc li::before { content: none; }
+.toc a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-height: 44px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  border-bottom: none;
+}
+.toc a span { color: var(--accent-ink); }
+.toc a:hover { color: var(--ink); }
+.toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+/* ---------- Projekte ein-/ausklappen ---------- */
+
+.projects-toggle {
+  min-height: 44px;
+  margin: 1.75rem 0 0;
+  padding: 0.5rem 0.95rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--accent-ink);
+  background: none;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.projects-toggle:hover { border-color: var(--accent); color: var(--ink); }
+.projects-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- Tap-Targets ---------- */
+
+.contact-list a,
+.tool-actions a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
 
 .chapter-head:focus-visible,
 .project-head:focus-visible {
@@ -505,6 +611,8 @@ p a, li a, footer a { display: inline; min-height: unset; }
 }
 .chapter-head:focus:not(:focus-visible),
 .project-head:focus:not(:focus-visible) { outline: none; }
+
+main:focus { outline: none; }
 
 :target { scroll-margin-top: 2rem; }
 
@@ -531,25 +639,35 @@ p a, li a, footer a { display: inline; min-height: unset; }
 </head>
 <body>
 
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
 <header class="hero">
   <img src="rs_logo_glow.svg" alt="RS Logo" class="hero-logo" width="96" height="80">
   <div class="hero-inner">
     <p class="eyebrow">Ralf Schwarz · Banking IT Consultant</p>
-    <h1>Front-to-Back Wertpapierprozesse</h1>
-    <p class="role">Analyse · Migration · Integration</p>
-    <p class="lead">Internationale Banken und Asset Manager modernisieren ihre IT-Landschaft — geprägt von Altsystemen, Fusionen und neuer Regulierung. Dabei bringe ich fundiertes Wissen über Wertpapierprozesse und praktische Erfahrung in der technischen Umsetzung ein.</p>
-    <p class="lead">Von der Ablösung gewachsener Plattformen über Cloud-Migrationen bis zur Umsetzung regulatorischer Anforderungen.</p>
+    <h1>Komplexe Wertpapierprozesse verstehen.<br>Changes sicher umsetzen.</h1>
+    <p class="role">Business-Analyse · Migration · Integration</p>
+    <p class="lead">Ich unterstütze Banken und Asset Manager bei Migrationen und regulatorischen Changes in gewachsenen Systemlandschaften — vom Rekonstruieren bestehender Geschäftsprozesse und Transaktionsflüsse über Requirements und User Stories bis zur fachlichen Bewertung der Umsetzung.</p>
     <p class="hero-sig">Frankfurt am Main · seit 1997 im Umfeld Banking IT</p>
   </div>
 </header>
 
-<main>
+<nav class="toc" aria-label="Abschnitte">
+  <ul>
+    <li><a href="#ueber-mich"><span>01</span> Über mich</a></li>
+    <li><a href="#projekte"><span>02</span> Ausgewählte Projekte</a></li>
+    <li><a href="#mt-analyze"><span>03</span> MT Analyze</a></li>
+    <li><a href="#kontakt"><span>04</span> Kontakt</a></li>
+  </ul>
+</nav>
 
-<details class="chapter" open>
+<main id="inhalt" tabindex="-1">
+
+<details class="chapter" id="ueber-mich" open>
 <summary class="chapter-head"><span class="chapter-index">01</span><h2>Über mich</h2></summary>
 <div class="chapter-body">
 <div class="about">
-<img class="about-photo" src="photo2.png" alt="Ralf Schwarz" width="1226" height="1283" loading="lazy">
+<img class="about-photo" src="photo2-380.webp" srcset="photo2-380.webp 380w, photo2-760.webp 760w" sizes="(max-width: 620px) 140px, 190px" alt="Ralf Schwarz" width="760" height="795" loading="lazy" decoding="async">
 <div class="about-text">
 <p>Ich bin Ralf Schwarz — Banking IT Consultant für Wertpapier-, Handels- und Abwicklungssysteme internationaler Banken und Asset Manager.</p>
 <p>Seit über 15 Jahren bin ich Wertpapier-Business-Analyst — hands-on und nah an der technischen Umsetzung, mit Entwicklungshintergrund davor.</p>
@@ -561,10 +679,12 @@ p a, li a, footer a { display: inline; min-height: unset; }
 </div>
 </details>
 
-<details class="chapter">
+<details class="chapter" id="projekte" open>
 <summary class="chapter-head"><span class="chapter-index">02</span><h2>Ausgewählte Projekte</h2></summary>
 <div class="chapter-body">
 <p class="chapter-lead">Schwerpunkt der letzten Jahre: Vorhaben in Abwicklung und Securities Finance mit CCP-, Triparty- und SWIFT-Bezug. Eine Auswahl aus einer Projekthistorie, die bis 1997 zurückreicht.</p>
+
+<button type="button" class="projects-toggle" data-toggle-projects aria-expanded="false">Alle Projekte ausklappen</button>
 
 <div class="projects">
 
@@ -704,8 +824,8 @@ p a, li a, footer a { display: inline; min-height: unset; }
 </div>
 </details>
 
-<details class="chapter" open>
-<summary class="chapter-head"><span class="chapter-index">03</span><h2>MT Analyze — Abwicklungslogik aus SWIFT-Verkehr und Buchungen rekonstruieren</h2></summary>
+<details class="chapter" id="mt-analyze" open>
+<summary class="chapter-head"><span class="chapter-index">03</span><h2>MT Analyze</h2></summary>
 <div class="chapter-body">
 <div class="tool-card">
 <p class="tool-meta">Open Source · Desktop-Anwendung · Java 17+</p>
@@ -733,7 +853,7 @@ p a, li a, footer a { display: inline; min-height: unset; }
 </div>
 </details>
 
-<details class="chapter" open>
+<details class="chapter" id="kontakt" open>
 <summary class="chapter-head"><span class="chapter-index">04</span><h2>Kontakt</h2></summary>
 <div class="chapter-body">
 <p>Sie haben ein Vorhaben in Abwicklung, Handel oder Securities Finance? Für Anfragen und fachlichen Austausch erreichen Sie mich hier:</p>
@@ -762,6 +882,34 @@ p a, li a, footer a { display: inline; min-height: unset; }
 <p><a href="impressum.html">Impressum</a> &middot; <a href="datenschutz.html">Datenschutz</a></p>
 </div>
 </footer>
+
+<script>
+(function () {
+  // Ein per Anker angesteuertes Kapitel aufklappen (Fallback für ältere Browser)
+  function openFromHash() {
+    if (!location.hash) return;
+    var el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    while (el) {
+      if (el.tagName === "DETAILS") el.open = true;
+      el = el.parentElement;
+    }
+  }
+  openFromHash();
+  window.addEventListener("hashchange", openFromHash);
+
+  // "Alle Projekte aus-/einklappen"
+  var toggle = document.querySelector("[data-toggle-projects]");
+  if (toggle) {
+    var items = document.querySelectorAll(".project-item");
+    toggle.addEventListener("click", function () {
+      var expand = Array.prototype.some.call(items, function (d) { return !d.open; });
+      Array.prototype.forEach.call(items, function (d) { d.open = expand; });
+      toggle.setAttribute("aria-expanded", String(expand));
+      toggle.textContent = expand ? "Alle Projekte einklappen" : "Alle Projekte ausklappen";
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
