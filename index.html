@@ -358,21 +358,8 @@ details[open] > .project-head::before { transform: rotate(45deg); }
 
 .project-item p:last-child { margin-bottom: 0; }
 
-.about-grid {
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: 1.75rem;
-  align-items: start;
+.about-text {
   margin: 1.5rem 0;
-}
-
-.about-photo {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  object-fit: cover;
-  display: block;
-  border: 1px solid var(--border-light);
 }
 
 .about-text p:first-child { margin-top: 0; }
@@ -441,14 +428,6 @@ p a, li a, footer a { display: inline; min-height: unset; }
   .hero .lead { font-size: 1rem; }
   main { padding: 2.5rem 1.25rem 3rem; }
   body { font-size: 15px; }
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-  .about-photo {
-    width: 120px;
-    height: 120px;
-  }
 }
 </style>
 </head>
@@ -468,14 +447,11 @@ p a, li a, footer a { display: inline; min-height: unset; }
 
 <details class="chapter" open>
 <summary class="chapter-head"><h2>Über mich</h2></summary>
-<div class="about-grid">
-<img class="about-photo" src="photo.jpeg" alt="Ralf Schwarz" width="140" height="140">
 <div class="about-text">
 <p>Ich bin Ralf Schwarz, Banking IT Consultant mit Schwerpunkt auf Wertpapier-, Handels- und Abwicklungssystemen für internationale Banken und Asset Manager.</p>
 <p>Ich unterstütze die Analyse, Migration und Integration komplexer Bankensysteme. Dabei verbinde ich fundiertes Wissen über Wertpapierprozesse mit praktischer Erfahrung aus Handels-, Abwicklungs- und Regulierungsprojekten.</p>
 <p>Meine Erfahrung reicht von der Ablösung gewachsener Handels- und Abwicklungsplattformen über Cloud-Migrationen und Systemintegration nach Fusionen bis zur Anbindung von Börsen und Marktdaten. Dazu kommt die Umsetzung regulatorischer Anforderungen in Geschäftsprozessen und IT-Systemen.</p>
 <p>Außerdem pflege ich MT&nbsp;Analyze, ein Open-Source-Werkzeug zur Analyse von SWIFT-MT-Nachrichten für Migrationen, fachliche Abnahmetests (UAT) und die Klärung von Abweichungen in der Wertpapierabwicklung.</p>
-</div>
 </div>
 </details>
 
@@ -644,7 +620,6 @@ p a, li a, footer a { display: inline; min-height: unset; }
 
 <footer>
 <div class="footer-inner">
-<p>ISO 15022 ist ein Standard der ISO. Dieses Angebot ist unabhängig und steht in keiner Verbindung zur ISO.</p>
 <p>&copy; 2026 Ralf Schwarz &middot; <a href="impressum.html">Impressum</a> &middot; <a href="datenschutz.html">Datenschutz</a></p>
 </div>
 </footer>
